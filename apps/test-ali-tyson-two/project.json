@@ -1,0 +1,95 @@
+{
+  "name": "test-ali-tyson-two",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/test-ali-tyson-two/src",
+  "prefix": "test-ali-tyson-two",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/test-ali-tyson-two",
+        "index": "apps/test-ali-tyson-two/src/index.html",
+        "main": "apps/test-ali-tyson-two/src/main.ts",
+        "polyfills": "apps/test-ali-tyson-two/src/polyfills.ts",
+        "tsConfig": "apps/test-ali-tyson-two/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/test-ali-tyson-two/src/favicon.ico",
+          "apps/test-ali-tyson-two/src/assets"
+        ],
+        "styles": ["apps/test-ali-tyson-two/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/test-ali-tyson-two/src/environments/environment.ts",
+              "with": "apps/test-ali-tyson-two/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "test-ali-tyson-two:build:production"
+        },
+        "development": {
+          "browserTarget": "test-ali-tyson-two:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "test-ali-tyson-two:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/test-ali-tyson-two/src/**/*.ts",
+          "apps/test-ali-tyson-two/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/test-ali-tyson-two"],
+      "options": {
+        "jestConfig": "apps/test-ali-tyson-two/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
